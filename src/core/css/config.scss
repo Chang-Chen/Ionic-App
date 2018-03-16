@@ -1,0 +1,118 @@
+
+// flex兼容
+@mixin display-flex {
+  display: -moz-box;      /* 老版本语法: Firefox (buggy) */
+  display: -ms-flexbox;   /* 混合版本语法: IE 10 */
+  display: -webkit-flex;  /* 新版本语法: Chrome 21+ */
+  display: flex;          /* 新版本语法: Opera 12.1, Firefox 22+ */
+};
+
+@mixin flex($flexValue:0) {
+  -moz-box-flex: $flexValue;/* Firefox 19- */
+  -ms-flex: $flexValue;/* IE 10 */
+  -webkit-flex: $flexValue;/* Chrome */
+  flex: $flexValue;/* NEW,  Opera 12.1, Firefox 20+ */
+};
+
+// flex布局方向
+@mixin flex-direction($flex-direction:row){
+  -moz-flex-direction: $flex-direction;
+  -ms-flex-direction: $flex-direction;
+  -o-flex-direction: $flex-direction;
+  -webkit-flex-direction: $flex-direction;
+  flex-direction: $flex-direction;
+};
+// //flex布局排列方式
+// @mixin flex-wrap($flex-wrap:wrap){
+//     -moz-flex-wrap: $flex-wrap;
+//     -ms-flex-wrap: $flex-wrap;
+//     -o-flex-wrap: $flex-wrap;
+//     -webkit-flex-wrap: $flex-wrap;
+//     flex-wrap:$flex-wrap;
+// }
+
+@mixin justify-content($justify-content){
+  -moz-justify-content:$justify-content;
+  -ms-justify-content:$justify-content;
+  -o-justify-content:$justify-content;
+  -webkit-justify-content:$justify-content;
+  justify-content:$justify-content;
+}
+
+@mixin align-items($align-items){
+  -moz-align-items:$align-items;
+  -ms-align-items:$align-items;
+  -o-align-items:$align-items;
+  -webkit-align-items:$align-items;
+  align-items:$align-items;
+}
+
+// 圆角值
+@mixin border-radius($radiusValue){
+  -webkit-border-radius:$radiusValue;
+  border-radius: $radiusValue;
+}
+
+@mixin box-sizing-border-box {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@mixin box-sizing-content-box {
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+// color setting:字体颜色设置
+.cw {
+  color:white !important;
+}
+
+.cb {
+  color:black !important;
+}
+
+//上右下左
+@mixin bottom-line-zero{
+  @include bottom-line-custom(0, 0, 0, 0);
+}
+
+@mixin bottom-line-default {
+  @include bottom-line-custom(0, 15px, 0, 15px)
+}
+
+@mixin bottom-line-custom($edgTop:0,$edgRight:0,$edgBottom:0,$edgLeft:0){
+  position: relative;
+  &::after{
+    position: absolute;
+    content: '';
+    left: $edgLeft;
+    right: $edgRight;
+    bottom: $edgBottom;
+    // margin-top: 1px;
+    height: 1px;
+    background-color: #eee;
+    transform: scaleY(0.5);
+    -webkit-transform: scaleY(0.5);
+  }
+}
+
+@mixin right-arrow-default {
+  @include right-arrow-custom(10px,16px)
+}
+
+@mixin right-arrow-custom($edgRight:0px,$imgSize:16px){
+  position: relative;
+  &>.right-arrow{
+    position: absolute;
+    top: 50%;margin-top: -$imgSize/2;
+    right: $edgRight;
+    background: url('../assets/arrow-right.png') no-repeat center;
+    background-size: $imgSize;
+    width: $imgSize;
+    height: $imgSize;
+    border: none;
+  }
+}
+
+

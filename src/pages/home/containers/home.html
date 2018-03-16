@@ -1,0 +1,40 @@
+<ion-content overflow-scroll="true" style="background-color: white!important;">
+  <!--<ion-refresher (ionRefresh)="doRefresh($event) ">-->
+    <!--<ion-refresher-content-->
+      <!--pullingIcon="arrow-dropdown"-->
+      <!--pullingText="下拉刷新"-->
+      <!--refreshingSpinner="bubbles"-->
+      <!--refreshingText="加载中...">-->
+    <!--</ion-refresher-content>-->
+  <!--</ion-refresher>-->
+
+  <!--<div *ngIf="!houses || houses.length==0" class="emptyData" (click)="emptyClick()">-->
+    <!--<img src="assets/resource/empty.png" width="64" height="64"/>-->
+    <!--<span>没有符合条件的结果</span>-->
+  <!--</div>-->
+  <ion-list no-lines>
+    <ion-item *ngFor="let item of houses" (click)="didSelectHouse(item)">
+      <div class="house_list_thumbnail" item-start>
+        <img  #image [src]="item.housePicture" (load)="imageOnLoad(image,1.3,false)">
+      </div>
+      <p class="house_list_name item-text-wrap house_list_padding">{{ item.houseName }}</p>
+      <p class="house_list_commission house_list_padding">佣金：{{ item.commissionContent }}</p>
+      <ion-grid class="house_list_padding">
+        <ion-row>
+          <ion-col *ngFor="let tag of item.tag" col-auto class="house_list_tag">{{ tag }}</ion-col>
+        </ion-row>
+      </ion-grid>
+      <p class="house_list_price">{{ item.housePrice }}</p>
+    </ion-item>
+  </ion-list>
+
+  <!--<ion-infinite-scroll (ionInfinite)="loadMore($event)" *ngIf="canLoadMore">-->
+    <!--<ion-infinite-scroll-content-->
+      <!--loadingSpinner="bubbles"-->
+      <!--loadingText="加载更多...">-->
+    <!--</ion-infinite-scroll-content>-->
+  <!--</ion-infinite-scroll>-->
+</ion-content>
+
+
+
